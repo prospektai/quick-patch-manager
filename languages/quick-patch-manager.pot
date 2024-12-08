@@ -1,0 +1,137 @@
+# Copyright (C) 2024 Quick Patch Manager
+# This file is distributed under the same license as the Quick Patch Manager package.
+msgid ""
+msgstr ""
+"Project-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: https://example.com/support\n"
+"POT-Creation-Date: 2024-01-01 00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Admin Menu
+msgid "Quick Patch Manager"
+msgstr ""
+
+msgid "Patch Manager"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+# Plugin Selection
+msgid "Select a Plugin to Patch"
+msgstr ""
+
+msgid "Choose a Plugin"
+msgstr ""
+
+# File Selection
+msgid "Select a File to Patch"
+msgstr ""
+
+msgid "Choose a File"
+msgstr ""
+
+# File Editor
+msgid "File Editor"
+msgstr ""
+
+msgid "Save Patch"
+msgstr ""
+
+msgid "Restore Original"
+msgstr ""
+
+# Patch History
+msgid "Patch History"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+# Settings Page
+msgid "General Settings"
+msgstr ""
+
+msgid "Enable Automatic Backups"
+msgstr ""
+
+msgid "Notification Email"
+msgstr ""
+
+msgid "Email address to receive patch notifications"
+msgstr ""
+
+msgid "Patch History Retention"
+msgstr ""
+
+msgid "Number of days to keep patch history (0 for unlimited)"
+msgstr ""
+
+# Notifications
+msgid "File patched successfully"
+msgstr ""
+
+msgid "File restored successfully"
+msgstr ""
+
+msgid "A file has been patched"
+msgstr ""
+
+msgid "A file has been restored to its previous version"
+msgstr ""
+
+# Errors
+msgid "You do not have permission to edit files."
+msgstr ""
+
+msgid "The specified file does not exist."
+msgstr ""
+
+msgid "You can only edit files within the plugins directory."
+msgstr ""
+
+msgid "You can only edit PHP, JS, CSS, and TXT files."
+msgstr ""
+
+msgid "The file is not writable."
+msgstr ""
+
+msgid "Could not read file contents."
+msgstr ""
+
+msgid "Could not apply patch to the file."
+msgstr ""
+
+msgid "Could not restore the file to its previous version."
+msgstr ""
+
+# Change Log Actions
+msgid "Edited file %s"
+msgstr ""
+
+msgid "Restored file %s to previous version"
+msgstr ""
+
+msgid "Performed %s action on %s"
+msgstr ""
+
+# Confirmation Dialogs
+msgid "Are you sure you want to restore this file to its original version?"
+msgstr ""
+
+# Empty States
+msgid "No patch history available for this plugin."
+msgstr ""

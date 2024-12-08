@@ -1,0 +1,236 @@
+/* Quick Patch Manager Admin Styles */
+.wrap {
+    margin: 10px 20px 0 2px;
+    max-width: none;
+}
+
+.qpm-plugin-selector {
+    margin-bottom: 20px;
+}
+
+#qpm-plugin-select {
+    width: 100%;
+    max-width: 600px;
+    padding: 8px;
+    background: #3c3c3c;
+    color: #d4d4d4;
+    border: 1px solid #3c3c3c;
+    border-radius: 2px;
+}
+
+/* Editor Layout */
+#qpm-editor-wrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 0;
+    height: 600px;
+    background: #1e1e1e;
+    margin: 20px 0;
+    border: 1px solid #3c3c3c;
+}
+
+#qpm-file-browser {
+    border-right: 1px solid #3c3c3c;
+    overflow-y: auto;
+    background: #252526;
+}
+
+#qpm-file-editor {
+    position: relative;
+    height: 100%;
+}
+
+#qpm-file-content {
+    width: 100%;
+    height: 100%;
+}
+
+/* Editor Actions */
+.qpm-editor-actions {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+}
+
+.qpm-editor-actions button {
+    background: #0e639c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1.4;
+    transition: background-color 0.2s ease;
+}
+
+.qpm-editor-actions button:hover {
+    background: #1177bb;
+}
+
+/* Patch History */
+#qpm-patch-history {
+    margin-top: 30px;
+    background: #252526;
+    border: 1px solid #3c3c3c;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#qpm-patch-history h3 {
+    color: #d4d4d4;
+    padding: 15px 20px;
+    margin: 0;
+    background: #2d2d2d;
+    border-bottom: 1px solid #3c3c3c;
+}
+
+#qpm-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #d4d4d4;
+    font-size: 13px;
+}
+
+#qpm-history-table th,
+#qpm-history-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #3c3c3c;
+}
+
+#qpm-history-table th {
+    background: #2d2d2d;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+#qpm-history-table tr.qpm-history-even {
+    background: #2a2a2a;
+}
+
+#qpm-history-table tr.qpm-history-odd {
+    background: #252526;
+}
+
+#qpm-history-table tr:hover {
+    background: #333333;
+}
+
+.qpm-history-date {
+    white-space: nowrap;
+    color: #89d185;
+}
+
+.qpm-history-file {
+    color: #9cdcfe;
+}
+
+.qpm-history-action {
+    color: #ce9178;
+    text-transform: capitalize;
+}
+
+.qpm-history-user {
+    color: #4ec9b0;
+}
+
+.qpm-no-history {
+    text-align: center;
+    padding: 30px !important;
+    color: #858585;
+    font-style: italic;
+}
+
+/* Messages */
+.qpm-error {
+    color: #f48771;
+    background-color: rgba(90, 29, 29, 0.9);
+    border: 1px solid #f48771;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 3px;
+    font-size: 13px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.qpm-success {
+    color: #89d185;
+    background-color: rgba(30, 71, 46, 0.9);
+    border: 1px solid #89d185;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 3px;
+    font-size: 13px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* WordPress Admin Overrides */
+.wp-core-ui .button {
+    background: #0e639c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1.4;
+    height: auto;
+    min-height: 30px;
+    transition: background-color 0.2s ease;
+}
+
+.wp-core-ui .button:hover {
+    background: #1177bb;
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 782px) {
+    #qpm-editor-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: 800px;
+    }
+
+    #qpm-file-browser {
+        max-height: 300px;
+        border-right: none;
+        border-bottom: 1px solid #3c3c3c;
+    }
+
+    .qpm-editor-actions {
+        position: static;
+        margin: 10px;
+    }
+
+    .qpm-editor-actions button {
+        flex: 1;
+    }
+
+    #qpm-history-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    #qpm-history-table th,
+    #qpm-history-table td {
+        min-width: 120px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.qpm-success,
+.qpm-error {
+    animation: fadeIn 0.3s ease-out;
+}

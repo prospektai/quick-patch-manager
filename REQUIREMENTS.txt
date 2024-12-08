@@ -1,0 +1,140 @@
+Functional Requirements
+User Interface:
+
+Plugin Selection: The ability to select installed plugins that the user wants to patch.
+File Selection: Display the list of files within the selected plugin for the user to choose which file to patch.
+Edit File Content: Provide an editor interface for users to edit the selected files directly.
+Version Control/History: Track the changes made to each file, allowing users to view previous versions and revert if necessary.
+Restore Patches: Provide a feature to restore the modified files back to their original versions or to a previous version of the patch.
+Patch Management:
+
+Track Patches: Record metadata about each patch, such as:
+Plugin name and version.
+File name and path.
+Date of the patch.
+User who made the change.
+The specific changes made to the file (e.g., line additions/removals).
+Change Log: Maintain a history of all patches with timestamps and detailed information about the changes.
+Backup: Backup original plugin files before any changes are made to ensure that they can be restored later.
+Restore Patches: Allow the user to restore the patch to the original state or a previously saved version.
+Security:
+
+Permission Control: Restrict the ability to edit files to users with specific permissions (e.g., administrators only).
+Version Integrity: Ensure that users can only apply patches to the plugin files that are compatible with the installed version.
+Logging and Auditing:
+
+Audit Log: Track every action related to patching, including who patched, when, and what changes were made.
+File Change Diff: Provide a diff view of changes made to the files (showing added/removed lines).
+Notifications: Send notifications (optional) when a patch is made or restored.
+Patch Deployment:
+
+Apply Patches: The plugin must provide a method to apply changes to the plugin files (e.g., writing changes directly to the file system).
+On-the-fly Changes: Allow for quick modifications to plugin files without requiring a manual update process.
+Compatibility:
+
+Multiple Plugins: The patch manager should allow patching multiple plugins at once.
+Automatic Updates: Handle plugin updates without overwriting patched files. The patch manager could prompt the user to review and apply patches again after an update.
+Technical Requirements
+Custom Database Tables:
+
+Create a custom database table to track patches, changes, and backups.
+Example table schema:
+sql
+Copy code
+CREATE TABLE wp_plugin_patch_manager (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    plugin_name VARCHAR(255),
+    file_name VARCHAR(255),
+    file_path VARCHAR(255),
+    patch_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INT,
+    patch_content LONGTEXT,
+    action VARCHAR(50)  -- e.g., 'create', 'edit', 'restore'
+);
+WordPress Settings:
+
+Add a settings page where users can configure the plugin.
+Use WordPress Settings API for plugin options like enabling/disabling certain features or setting permissions.
+File Editing and Patching:
+
+Use WordPress Filesystem API to ensure compatibility with different server setups (e.g., local file access or remote FTP).
+Example to read a file:
+php
+Copy code
+$file_content = file_get_contents($plugin_file_path);
+Example to write changes to a file:
+php
+Copy code
+file_put_contents($plugin_file_path, $new_content);
+Version Control Integration:
+
+File Diff: Use a third-party PHP library or create your own to show the difference between versions (e.g., php-diff).
+Alternatively, you can store each version of a file as a separate entry in the database to allow users to compare versions and restore.
+Frontend Interface:
+
+Admin Page: Create a custom admin page to display a list of plugins and files to patch, using WordPress’s WP_List_Table class to list the plugins.
+File Editor: Integrate a rich text editor (e.g., CodeMirror or Ace Editor) for editing the code inside the file.
+Display change history with links to restore a particular version of the file.
+Patch Backup and Restore Mechanism:
+
+Backup: When a user makes a patch, the plugin should backup the original file (or the previous version if editing).
+Save the backup in a custom table or file system.
+Restore: Allow users to restore the original or previous patch from the history.
+User Permissions:
+
+Use current_user_can() to control who can access the patch manager (e.g., only administrators).
+Example:
+php
+Copy code
+if (!current_user_can('administrator')) {
+    wp_die('You do not have permission to edit plugin files.');
+}
+Change Log and History:
+
+Each time a file is patched or restored, store the change in a change log.
+Use a simple JSON or database table to track changes:
+json
+Copy code
+{
+    "plugin_name": "Example Plugin",
+    "file_name": "example-file.php",
+    "changes": [
+        {
+            "change_type": "edit",
+            "date": "2024-12-01",
+            "user": "admin",
+            "diff": "Added a new function"
+        },
+        {
+            "change_type": "restore",
+            "date": "2024-12-02",
+            "user": "admin",
+            "diff": "Reverted changes"
+        }
+    ]
+}
+Notifications:
+
+Use the wp_mail() function to send notifications when a patch is made or restored.
+Compatibility with WordPress Updates:
+
+Ensure the plugin doesn’t interfere with the regular updates of plugins and WordPress itself. Add checks to confirm whether patched files are modified during plugin updates and allow the user to reapply patches as needed.
+User Workflow
+Selecting Plugins:
+
+From the Patch Manager plugin interface, the user selects a plugin to patch.
+Choosing Files to Patch:
+
+After selecting a plugin, the user is presented with a list of files from the plugin.
+Making Changes:
+
+The user can edit the content of the file(s) directly in the editor.
+Saving Changes:
+
+When the user saves changes, the patch is recorded in the database along with the backup of the original file.
+Tracking Changes:
+
+The plugin maintains a detailed change log that the user can access to view, compare, and revert patches.
+Restoring Files:
+
+If the user wants to restore the file to the original or a previous version, they can choose from the history and restore it.
